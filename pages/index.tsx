@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home({ posts }: { posts: any }) {
   console.log(posts);
   return (
@@ -23,7 +25,7 @@ export default function Home({ posts }: { posts: any }) {
                 <img src={post.image?.url} alt={post.title} className="rounded-xl rounded-b-none w-full"/>
                 <div className="p-8">
                   <h2 className="font-bold text-xl mb-8">{post.title}</h2>
-                  <a href="/" className="border border-slate-400 hover:bg-slate-200 transition-all rounded px-4 py-2">View Post</a>
+                  <Link href="/" className="border border-slate-400 hover:bg-slate-200 transition-all rounded px-4 py-2">View Post</Link>
                 </div>
               </div>
             ))}
