@@ -4,19 +4,31 @@ export default function Home({ posts }: { posts: any }) {
     <>
       <main className="container mx-auto px-8">
         <div className="py-20">
-          <h1 className="font-bold text-3xl">Netlify Full Stack Demo</h1>
+          <h1 className="font-bold text-3xl text-center">
+            <img src="/logo.svg" alt="Netlify - Fullstack Demo" className="w-40 inline-block" />
+          </h1>
         </div>
 
-        <div className="grid grid-cols-3 gap-10">
-          {posts?.map((post: any) => (
-            <div key={post.id}>
-              <img src={post.image?.url} alt={post.title} className="rounded-xl"/>
-              <div className="py-4">
-                <h2 className="font-bold text-xl">{post.title}</h2>
-              </div>
-            </div>
-          ))}
+        <div className="pt-0 py-20 px-10 text-center">
+          <p className="text-xl">All of the data on this page is from <a href="https://www.netlify.com/products/connect/" className="text-teal-500 underline">Netlify Connect</a></p>
         </div>
+
+        <div className="bg-slate-100 p-12 rounded-xl">
+          <h2 className="text-2xl mb-12">
+            <img src="/contentful.png" alt="Contentful" className="w-36"/>
+          </h2>
+          <div className="grid md:grid-cols-3 gap-10">
+            {posts?.map((post: any) => (
+              <div key={post.id} className="bg-white rounded-xl">
+                <img src={post.image?.url} alt={post.title} className="rounded-xl rounded-b-none w-full"/>
+                <div className="p-8">
+                  <h2 className="font-bold text-xl mb-8">{post.title}</h2>
+                  <a href="/" className="border border-slate-400 hover:bg-slate-200 transition-all rounded px-4 py-2">View Post</a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>   
       </main>
     </>
   )

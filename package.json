@@ -21,6 +21,8 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "@stackbit/cms-contentful": "^0.4.8",
+    "@stackbit/types": "^0.9.2",
     "autoprefixer": "^10.4.15",
     "postcss": "^8.4.28",
     "tailwindcss": "^3.3.3"
