@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 export default function Home({ posts }: { posts: any }) {
-  console.log(posts);
   return (
     <>
       <main className="container mx-auto px-8">
@@ -39,22 +38,22 @@ export default function Home({ posts }: { posts: any }) {
 export const getStaticProps = async () => {
   try {
     const QUERY = `
-      query MyQuery {
-        allContentfulPost {
-          nodes {
+    query MyQuery {
+      allContentfulPost {
+        nodes {
+          id
+          title
+          slug
+          description {
+            raw
+          }
+          image {
             id
-            title
-            slug
-            description {
-              raw
-            }
-            image {
-              id
-              url
-            }
+            url
           }
         }
       }
+    }
     `;
   
     const results = await fetch('https://adam-demo-lay-i7y9od-prod.api.netlify-connect.com/', {
