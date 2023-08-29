@@ -56,7 +56,7 @@ export const getStaticProps = async () => {
     }
     `;
   
-    const results = await fetch('https://adam-demo-lay-i7y9od-prod.api.netlify-connect.com/', {
+    const results = await fetch(process.env.CONNECT_API_ENDPOINT || '', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${process.env.CONNECT_API_KEY}`,
