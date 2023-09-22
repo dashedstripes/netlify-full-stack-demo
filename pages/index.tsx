@@ -68,8 +68,6 @@ export const getStaticProps = async () => {
   
     const json = await results.json();
 
-    console.log(json?.data?.allContentfulPost)
-
     return { props: { posts: json?.data?.allContentfulPost?.nodes || [] }}
   } catch(err) {
     console.error(err);
