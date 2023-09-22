@@ -20,7 +20,7 @@ export default function Home({ posts }: { posts: any }) {
           </h2>
           <div className="grid md:grid-cols-3 gap-10">
             {posts?.map((post: any) => (
-              <div key={post.id} className="bg-white rounded-xl"  data-sb-object-id={`post_${post.id}`}>
+              <div key={post.id} className="bg-white rounded-xl"  data-sb-object-id={`${post.contentful_id}`}>
                 <img src={post.image?.url} alt={post.title} className="rounded-xl rounded-b-none w-full"/>
                 <div className="p-8">
                   <h2 className="font-bold text-xl mb-8" data-sb-field-path="title">{post.title}</h2>
@@ -29,7 +29,7 @@ export default function Home({ posts }: { posts: any }) {
               </div>
             ))}
           </div>
-        </div>   
+        </div>
       </main>
     </>
   )
@@ -44,6 +44,7 @@ export const getStaticProps = async () => {
           id
           title
           slug
+          contentful_id
           description {
             raw
           }
@@ -66,6 +67,8 @@ export const getStaticProps = async () => {
     })
   
     const json = await results.json();
+
+    console.log(json?.data?.allContentfulPost)
 
     return { props: { posts: json?.data?.allContentfulPost?.nodes || [] }}
   } catch(err) {

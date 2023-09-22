@@ -37,3 +37,5 @@ next-env.d.ts
 
 request.sh
 .stackbit
+# Local Netlify folder
+.netlify
