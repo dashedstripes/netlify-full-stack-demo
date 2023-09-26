@@ -20,10 +20,10 @@ export default function Home({ posts }: { posts: any }) {
           </h2>
           <div className="grid md:grid-cols-3 gap-10">
             {posts?.map((post: any) => (
-              <div key={post.id} className="bg-white rounded-xl"  data-sb-object-id={`${post.contentful_id}`}>
-                <img src={post.image?.url} alt={post.title} className="rounded-xl rounded-b-none w-full"/>
+              <div key={post.node.id} className="bg-white rounded-xl"  data-sb-object-id={`${post.node.contentful_id}`}>
+                <img src={post.node.featuredImage?.url} alt={post.node.title} className="rounded-xl rounded-b-none w-full"/>
                 <div className="p-8">
-                  <h2 className="font-bold text-xl mb-8" data-sb-field-path="title">{post.title}</h2>
+                  <h2 className="font-bold text-xl mb-8" data-sb-field-path="title">Somethign:{post.node.title}</h2>
                   <Link href="/" className="border border-slate-400 hover:bg-slate-200 transition-all rounded px-4 py-2">View Post</Link>
                 </div>
               </div>
@@ -35,27 +35,27 @@ export default function Home({ posts }: { posts: any }) {
   )
 }
 
+
 export const getStaticProps = async () => {
   try {
     const QUERY = `
     query MyQuery {
-      allContentfulPost {
-        nodes {
-          id
-          title
-          slug
-          contentful_id
-          description {
-            raw
-          }
-          image {
+      allContentfulPageBlogPost(filter: {node_locale: {eq: "en-US"}}) {
+        edges {
+          node {
             id
-            url
+            title
+            contentful_id
+            featuredImage {
+              url
+            }
+            node_locale
+            publishedDate
           }
         }
       }
     }
-    `;
+  `;
   
     const results = await fetch(process.env.CONNECT_API_ENDPOINT || '', {
       method: 'POST',
@@ -67,8 +67,9 @@ export const getStaticProps = async () => {
     })
   
     const json = await results.json();
+    console.log("API", json.data.allContentfulPageBlogPost.edges);
 
-    return { props: { posts: json?.data?.allContentfulPost?.nodes || [] }}
+    return { props: { posts: json?.data?.allContentfulPageBlogPost?.edges || [] }}
   } catch(err) {
     console.error(err);
     return { props: { posts: [] }}
