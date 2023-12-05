@@ -23,7 +23,7 @@ export default function Home({ posts }: { posts: any }) {
               <div key={post.sys.id} className="bg-white rounded-xl"  data-sb-object-id={`${post.sys.id}`}>
                 <img className="rounded-xl rounded-b-none w-full"/>
                 <div className="p-8">
-                  <h2 className="font-bold text-xl mb-8" data-sb-field-path="label">Somethign: {`${post.fields.label}`}</h2>
+                  <h2 className="font-bold text-xl mb-8" data-sb-field-path="label">Heading: {`${post.fields.label}`}</h2>
                   <Link href="/" className="border border-slate-400 hover:bg-slate-200 transition-all rounded px-4 py-2">View Post</Link>
                 </div>
               </div>
