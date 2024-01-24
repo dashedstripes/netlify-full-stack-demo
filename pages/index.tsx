@@ -10,6 +10,8 @@ export default function Home({ posts }: { posts: any }) {
           </h1>
         </div>
 
+        <h1>Lots of changes here!</h1>
+
         <div className="pt-0 py-20 px-10 text-center">
           <p className="text-xl">All of the data on this page is from <a href="https://www.netlify.com/products/connect/" className="text-teal-500 underline">Netlify Connect</a></p>
         </div>
